@@ -14,6 +14,8 @@ from .const_derefs import ConstantDereferencesSimplifier
 from .register_save_area_simplifier import RegisterSaveAreaSimplifier
 from .ret_addr_save_simplifier import RetAddrSaveSimplifier
 from .x86_gcc_getpc_simplifier import X86GccGetPcSimplifier
+from .block_merger import BlockMerger
+from .call_arg_simplifier import CallArgSimplifier
 
 
 _all_optimization_passes = [
@@ -26,7 +28,9 @@ _all_optimization_passes = [
     (ConstantDereferencesSimplifier, True),
     (RetAddrSaveSimplifier, True),
     (X86GccGetPcSimplifier, True),
-    (EagerReturnsSimplifier, True),
+    (CallArgSimplifier, True),
+    (BlockMerger, True),
+    (EagerReturnsSimplifier, False),
 ]
 
 def get_optimization_passes(arch, platform):
